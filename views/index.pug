@@ -1,0 +1,174 @@
+doctype html
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title EduGrade | Sistema de Calificaciones Académicas
+        script(src="https://cdn.tailwindcss.com")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css")
+    body(class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans")
+        
+        // Navbar superior
+        header(class="bg-slate-900/90 backdrop-blur-md border-b border-slate-800 sticky top-0 z-10")
+            div(class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between")
+                div(class="flex items-center gap-3")
+                    div(class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-400 to-indigo-600 flex items-center justify-center shadow-lg shadow-sky-500/20")
+                        i(class="fa-solid fa-graduation-cap text-white text-lg")
+                    div
+                        span(class="font-bold text-lg tracking-tight text-white") EduGrade
+                        span(class="ml-2 text-xs font-medium px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20") Módulo QA / Académico
+                
+                div(class="hidden sm:flex items-center gap-4 text-sm text-slate-400")
+                    span(class="flex items-center gap-1.5")
+                        i(class="fa-solid fa-circle-check text-emerald-400 text-xs")
+                        | Escala 0.0 - 5.0
+                    span(class="text-slate-700") |
+                    span Evaluación Automática
+
+        // Hero / Encabezado de sección
+        section(class="bg-gradient-to-b from-slate-900 to-slate-950 border-b border-slate-800/60 py-8")
+            div(class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8")
+                div(class="flex flex-col md:flex-row md:items-center md:justify-between gap-4")
+                    div
+                        h1(class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight") Sistema de Calificaciones Académicas
+                        p(class="text-slate-400 mt-1 text-sm sm:text-base") Calcula el promedio final de tres cortes académicos y verifica el estado de aprobación al instante.
+                    div(class="flex items-center gap-2 text-xs text-slate-400 bg-slate-900 border border-slate-800 px-3.5 py-2 rounded-lg self-start")
+                        i(class="fa-solid fa-shield-halved text-sky-400")
+                        span Validación estricta de rangos activa
+
+        // Contenido principal en Grid (2 columnas en escritorio)
+        main(class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8")
+            div(class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start")
+                
+                // Columna Izquierda: Panel informativo y Reglas del Sistema (5 columnas)
+                aside(class="lg:col-span-5 space-y-6")
+                    div(class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl")
+                        div(class="flex items-center gap-2.5 mb-4")
+                            div(class="w-8 h-8 rounded-lg bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400")
+                                i(class="fa-solid fa-book-open text-sm")
+                            h2(class="text-lg font-bold text-white") Reglas de Evaluación
+                        
+                        ul(class="space-y-3.5 text-sm text-slate-300")
+                            li(class="flex items-start gap-3")
+                                i(class="fa-solid fa-check text-sky-400 mt-1")
+                                span Rango numérico válido entre 
+                                    strong(class="text-white") 0.0 y 5.0
+                                    | .
+                            li(class="flex items-start gap-3")
+                                i(class="fa-solid fa-ban text-rose-400 mt-1")
+                                span No se permiten valores negativos ni superiores a 
+                                    strong(class="text-white") 5.0
+                                    | .
+                            li(class="flex items-start gap-3")
+                                i(class="fa-solid fa-calculator text-indigo-400 mt-1")
+                                span El promedio se calcula de forma aritmética sobre 
+                                    strong(class="text-white") tres notas obligatorias
+                                    | .
+                            li(class="flex items-start gap-3")
+                                i(class="fa-solid fa-award text-emerald-400 mt-1")
+                                span Promedio 
+                                    strong(class="text-emerald-400") igual o superior a 3.0
+                                    | : Estado 
+                                    span(class="px-2 py-0.5 text-xs rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20") Aprobado
+                            li(class="flex items-start gap-3")
+                                i(class="fa-solid fa-circle-xmark text-rose-400 mt-1")
+                                span Promedio 
+                                    strong(class="text-rose-400") inferior a 3.0
+                                    | : Estado 
+                                    span(class="px-2 py-0.5 text-xs rounded bg-rose-500/10 text-rose-400 border border-rose-500/20") Reprobado
+
+                    // Tarjeta de referencia rápida (Valor límite)
+                    div(class="bg-gradient-to-r from-indigo-950/60 to-slate-900 border border-indigo-500/20 rounded-2xl p-5")
+                        div(class="flex items-start gap-3")
+                            i(class="fa-solid fa-lightbulb text-amber-400 text-lg mt-0.5")
+                            div
+                                h3(class="text-sm font-semibold text-white") Nota de Referencia (Valor Límite)
+                                p(class="text-xs text-slate-400 mt-1 leading-relaxed") Si el promedio obtenido es exactamente 
+                                    strong(class="text-slate-200") 3.00
+                                    | , el sistema clasifica automáticamente al estudiante como 
+                                    strong(class="text-emerald-400") Aprobado
+                                    | .
+
+                // Columna Derecha: Formulario y Panel de Resultados (7 columnas)
+                section(class="lg:col-span-7 space-y-6")
+                    div(class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl")
+                        div(class="flex items-center justify-between mb-6")
+                            div
+                                h2(class="text-xl font-bold text-white") Registro de Calificaciones
+                                p(class="text-xs text-slate-400 mt-0.5") Completa los tres campos para procesar la evaluación
+                            a(href="/" class="text-xs text-slate-400 hover:text-sky-400 transition flex items-center gap-1.5 bg-slate-800/80 hover:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700")
+                                i(class="fa-solid fa-rotate-left")
+                                | Limpiar
+
+                        form(action="/calcular" method="POST" class="space-y-5")
+                            div(class="grid grid-cols-1 sm:grid-cols-3 gap-4")
+                                // Input Nota 1
+                                div(class="bg-slate-950/60 p-4 rounded-xl border border-slate-800 focus-within:border-sky-500 transition")
+                                    label(for="nota1" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2")
+                                        i(class="fa-solid fa-1 text-sky-400 mr-1.5")
+                                        | Primera Nota
+                                    input(type="number" step="any" name="nota1" id="nota1" placeholder="Ej: 3.5" value=valores.nota1 required class="w-full bg-transparent text-xl font-bold text-white placeholder-slate-600 focus:outline-none")
+
+                                // Input Nota 2
+                                div(class="bg-slate-950/60 p-4 rounded-xl border border-slate-800 focus-within:border-sky-500 transition")
+                                    label(for="nota2" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2")
+                                        i(class="fa-solid fa-2 text-sky-400 mr-1.5")
+                                        | Segunda Nota
+                                    input(type="number" step="any" name="nota2" id="nota2" placeholder="Ej: 4.0" value=valores.nota2 required class="w-full bg-transparent text-xl font-bold text-white placeholder-slate-600 focus:outline-none")
+
+                                // Input Nota 3
+                                div(class="bg-slate-950/60 p-4 rounded-xl border border-slate-800 focus-within:border-sky-500 transition")
+                                    label(for="nota3" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2")
+                                        i(class="fa-solid fa-3 text-sky-400 mr-1.5")
+                                        | Tercera Nota
+                                    input(type="number" step="any" name="nota3" id="nota3" placeholder="Ej: 2.8" value=valores.nota3 required class="w-full bg-transparent text-xl font-bold text-white placeholder-slate-600 focus:outline-none")
+
+                            button(type="submit" class="w-full bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-semibold py-3.5 px-6 rounded-xl shadow-lg shadow-sky-500/20 transition flex items-center justify-center gap-2 cursor-pointer")
+                                i(class="fa-solid fa-calculator")
+                                span Calcular Resultado Final
+
+                        // Alerta de Error de Validación
+                        if error
+                            div(class="mt-6 p-4 bg-rose-950/40 border border-rose-500/50 rounded-xl flex items-start gap-3 animate-fade-in")
+                                div(class="w-8 h-8 rounded-lg bg-rose-500/20 flex items-center justify-center text-rose-400 shrink-0 mt-0.5")
+                                    i(class="fa-solid fa-triangle-exclamation")
+                                div
+                                    h4(class="text-sm font-bold text-rose-300") Dato fuera de rango permitido
+                                    p(class="text-sm text-rose-200/80 mt-0.5")= error
+
+                        // Tarjeta de Resultado Exitoso
+                        if resultado
+                            div(class="mt-6 bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden")
+                                div(class="px-5 py-3 bg-slate-800/50 border-b border-slate-800 flex items-center justify-between")
+                                    span(class="text-xs font-semibold uppercase tracking-wider text-slate-400") Acta de Evaluación Generada
+                                    span(class="text-xs text-slate-500") Escala: 0.0 - 5.0
+                                
+                                div(class="p-6 flex flex-col sm:flex-row items-center justify-between gap-6")
+                                    div(class="text-center sm:text-left")
+                                        p(class="text-xs text-slate-400 uppercase tracking-wider font-medium") Promedio Ponderado
+                                        div(class="flex items-baseline justify-center sm:justify-start gap-2 mt-1")
+                                            span(class="text-4xl sm:text-5xl font-black text-white")= resultado.promedio
+                                            span(class="text-sm text-slate-500 font-medium") / 5.00
+                                        
+                                        // Desglose de notas ingresadas
+                                        div(class="flex items-center gap-2 mt-3 text-xs text-slate-400")
+                                            span Notas:
+                                            each n in resultado.notas
+                                                span(class="px-2 py-0.5 rounded bg-slate-900 border border-slate-700 text-slate-200 font-mono")= n.toFixed(1)
+
+                                    div(class="flex flex-col items-center sm:items-end")
+                                        span(class="text-xs text-slate-400 mb-2") Estado Académico
+                                        if resultado.esAprobado
+                                            div(class="px-5 py-2.5 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 flex items-center gap-2.5 shadow-lg shadow-emerald-500/10")
+                                                i(class="fa-solid fa-circle-check text-xl")
+                                                span(class="text-lg font-extrabold tracking-wide uppercase")= resultado.estado
+                                        else
+                                            div(class="px-5 py-2.5 rounded-xl bg-rose-500/15 border border-rose-500/40 text-rose-400 flex items-center gap-2.5 shadow-lg shadow-rose-500/10")
+                                                i(class="fa-solid fa-circle-xmark text-xl")
+                                                span(class="text-lg font-extrabold tracking-wide uppercase")= resultado.estado
+
+        // Footer
+        footer(class="bg-slate-900 border-t border-slate-800/80 py-5 mt-auto")
+            div(class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500")
+                p EduGrade — Sistema de Gestión de Calificaciones (Arquitectura MVC)
+                p Desafío 4 · Análisis y Desarrollo de Software (ADSO)
